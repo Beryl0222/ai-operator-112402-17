@@ -1,0 +1,13 @@
+{
+  "name": "mobile-lowrank-shrink-svd",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "test": "node --test",
+    "inspect": "node inspect.mjs"
+  }
+}

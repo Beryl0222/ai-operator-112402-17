@@ -1,0 +1,134 @@
+{
+  "blocks": [
+    {
+      "id": "a",
+      "positions": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0.5
+        ],
+        [
+          2,
+          0.5
+        ]
+      ],
+      "frames": [
+        {
+          "id": "d0",
+          "support": "p",
+          "quality": 0.98,
+          "pix": [
+            1,
+            0.996,
+            null
+          ]
+        },
+        {
+          "id": "d1",
+          "support": "p",
+          "quality": 0.95,
+          "pix": [
+            0.997,
+            1,
+            null
+          ]
+        },
+        {
+          "id": "d2",
+          "support": "q",
+          "quality": 0.75,
+          "pix": [
+            null,
+            0.8,
+            0.4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "positions": [
+        [
+          1,
+          0.5
+        ],
+        [
+          2,
+          0.5
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "frames": [
+        {
+          "id": "d0",
+          "support": "p",
+          "quality": 0.97,
+          "pix": [
+            0.45,
+            0.51,
+            0.85
+          ]
+        },
+        {
+          "id": "d3",
+          "support": "p",
+          "quality": 0.9,
+          "pix": [
+            0.5,
+            0.56,
+            0.82
+          ]
+        }
+      ]
+    }
+  ],
+  "profile": {
+    "lambda": 0.003,
+    "tolerance": 0.001,
+    "alignQuality": 0.8
+  },
+  "original": [
+    0.99,
+    0.99,
+    0.52,
+    0.85
+  ],
+  "events": [
+    [
+      "frames",
+      "a",
+      0,
+      2
+    ],
+    [
+      "read",
+      0,
+      4
+    ],
+    [
+      "frames",
+      "b",
+      0,
+      2
+    ],
+    [
+      "replace",
+      "a",
+      "d2",
+      0.94
+    ],
+    [
+      "read",
+      0,
+      4
+    ]
+  ],
+  "scratchBytes": 4096
+}
