@@ -13,4 +13,6 @@ test('推荐域、可见轴和嵌入参数的格式与关联', () => {
   assert.ok(data.slotFetchLimit<data.fields*data.batch);
   assert.ok(data.workBytes<data.fields**2*4);
   assert.ok(data.triples.some(t=>t.slice(0,3).every(x=>data.policy[1][1].includes(x))));
+  assert.ok(data.protectedMixtures.every(r=>r[2].every(([field,scale,axes])=>data.policy[1][1].includes(field)&&axes.length===r[3].length)));
+  assert.ok(data.protectedMixtures[0][2].some(([id])=>data.protectedMixtures[1][2].some(([other])=>id===other)));
 });
