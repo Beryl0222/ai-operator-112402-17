@@ -8,6 +8,7 @@
   },
   "scripts": {
     "inspect": "node inspect.mjs",
+    "smoke": "node smoke.mjs",
     "test": "node --test"
   }
 }

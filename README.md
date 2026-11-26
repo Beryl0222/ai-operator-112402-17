@@ -9,3 +9,14 @@
 ## 取数
 
 `inputs/field-assets.json` 保存标定、规格和调用记录。记录中的范围除明确说明外从零开始，使用半开区间。批量数组按调用记录列出的顺序交付。crossField(id) 给槽引用和权，crossSlot(key) 给参数向量，crossRequest(index) 给当前授权及上游项。
+
+## 端侧算子
+
+`src/` 实现上述合同，`npm run smoke` 打印一次完整的设备调用（采样 → 前向 → 受限回传 → 投影提交）。要点与合同逐条对应：
+
+- `src/interactions.mjs`：每个 pair/triple 只读合同声明的域与轴；先按档位裁轴再乘，不建稠密张量。`status` 为 `unavailable` 表示缺域/无授权/无合同，`status: "ok"` 且 `zero: true` 才是真实求值后的零，两者不混用。
+- `src/access.mjs`：读槽按 `(table,version,key)` 计一次，`observations` 记录每次调用的目的域；关闭域不触发读槽，共享别名由仍许可端读取；`auditCache` 列出政策收紧后可核对但不可重读的缓存身份。
+- `src/training.mjs`：只对已发布、有损失权且别名可编辑的项回传；多视图命中同一物理槽时梯度累加。目标身份含 exposure 与档位，跨档复用源读但不复用新增轴的损失。
+- `src/views.mjs`：`protectedMixtures` 先由物理槽与权重解释成轴向量，再按映射乘系数并与读口权做内积；冻结等式对公共槽可线性相依，投影前做正交化。成员域关闭或格点越权时读口作为被阻止关系报告。
+- `src/proposal.mjs`：合法步是原始梯度步到全部有效冻结视图交集的欧氏投影（联合求解，不逐域清零）；被阻止时返回可应用分量、`blockedRelations` 与上一次合法读法 `fallback`。
+
